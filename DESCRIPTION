@@ -1,6 +1,6 @@
 Package: jlmerclusterperm
 Title: Cluster-Based Permutation Analysis for Densely Sampled Time Data
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     person("June", "Choe", , "jchoe001@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-0701-921X"))
@@ -10,7 +10,7 @@ Description: An implementation of fast cluster-based permutation analysis
     mixed-effects) regression models for the calculation of timewise
     statistics. Provides both a wholesale and a piecemeal interface to the
     CPA procedure with an emphasis on interpretability and diagnostics.
-    Integrates 'Julia' libraries 'MixedModels.JL' and 'GLM.JL' for
+    Integrates 'Julia' libraries 'MixedModels.jl' and 'GLM.jl' for
     performance improvements, with additional functionalities for
     interfacing with 'Julia' from 'R' powered by the 'JuliaConnectoR'
     package.
@@ -36,8 +36,8 @@ Collate: 'jlmerclusterperm-package.R' 'aaa.R' 'utils.R'
         'clusterpermute.R' 'threshold_search.R' 'tidy.R' 'zzz.R'
         'srr-stats-standards.R'
 NeedsCompilation: no
-Packaged: 2023-06-26 13:50:44 UTC; jchoe
+Packaged: 2023-06-28 06:16:10 UTC; jchoe
 Author: June Choe [aut, cre, cph] (<https://orcid.org/0000-0002-0701-921X>)
 Maintainer: June Choe <jchoe001@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-06-27 17:00:02 UTC
+Date/Publication: 2023-07-02 20:00:08 UTC
