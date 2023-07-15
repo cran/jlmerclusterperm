@@ -1,8 +1,8 @@
-7122e3e5af6b73dd51fd1179e9044cca *DESCRIPTION
+ccc09920c84a8e6ebc3b4733957d8afb *DESCRIPTION
 d37c99895d661b1cbb1434dba60e554f *LICENSE
 a9aa89592104bf9fe4bd97ccf7ad8b5e *NAMESPACE
-c98ccf7670e9dc7c3ac28e0294225fb6 *NEWS.md
-33f43128c35fdba8955632ad0fbc5e89 *R/aaa.R
+fe763c110a374f0b184f19a0a612f1ff *NEWS.md
+28eaa3aaa059396e668c950a8ffe0c15 *R/aaa.R
 456d1eeb5f37135bab75563ff21862ad *R/calculate_pvalue.R
 053698f51a7051a22d26d336e9830486 *R/clusterpermute.R
 d7d7d78d410138ec1626903f2237fd15 *R/clusters_methods.R
@@ -21,7 +21,7 @@ b2e1864ae13fc1f449b7a821c404b58f *R/threshold_search.R
 7ad321b9f94163df04889b4b27534af0 *R/tidy.R
 41792612dc2971527fa11a6cf7e9a47a *R/utils.R
 c87c2d9619a96ec469efd6c2e01e34ee *R/zzz.R
-3890049ee22ead9a011cab68840558b4 *README.md
+aa4086656208da59d57ef66af5c73543 *README.md
 f01682ffd9d5582c0d3b8a226f3c2b16 *build/partial.rdb
 adb9de191af250848e0dc03c194aeb6f *build/vignette.rds
 e8c98e39c7a9fcb4b53cb90eb37e61cc *inst/doc/jlmerclusterperm.R
@@ -33,7 +33,6 @@ f4bbbc7613bc8d374c333b05e4a27ef3 *inst/julia/03-compute_timewise_statistics.jl
 dfa1f3efae35458bf2a0f171ea8d3a74 *inst/julia/04-extract_clusters.jl
 8a6fb995580ca2b59f2b64b76d6dc428 *inst/julia/05-permute.jl
 465e79b47e376ff369e2528b0ec6c080 *inst/julia/06-permute_timewise_statistics.jl
-11370675fd52536178ae9ce38146c9a7 *inst/julia/Manifest.toml
 40c09ab1d240715bffa775b03686ea4e *inst/julia/Project.toml
 cc2bf4ca77c78822aaf3e9039c65c3fd *inst/julia/load-pkgs.jl
 f706105b52a4803463eb6156d240623d *man/calculate_clusters_pvalues.Rd
@@ -58,7 +57,7 @@ ea7e9363750221182e8c543ddd66283c *man/jlmerclusterperm-package.Rd
 661188afe4ba8a5588494f03e7384307 *man/julia_model_tidiers.Rd
 2fd78c972e9fca16611c21c9aad91b90 *man/julia_progress.Rd
 b7bb9b0843c602354f6ab2fe2c29d54a *man/julia_rng.Rd
-535d8313b7d6693fd735fff2332f13aa *man/julia_setup_ok.Rd
+742b528ac53dcf887da57d8816c1b56c *man/julia_setup_ok.Rd
 4131b937b7bf17a5c574ce029f9348a6 *man/make_jlmer_spec.Rd
 c5eef11daa60a9b74bee15c108a4cbbe *man/permute_by_predictor.Rd
 cb7854de9127287bcafbfb65d570a4f0 *man/permute_timewise_statistics.Rd
@@ -66,8 +65,8 @@ e6bee05432e598a82c88b34229fe1d39 *man/reexports.Rd
 1068a6fe00e07bd6c0c3def8eb509a1e *man/to_jlmer.Rd
 ddc8e548ca463a30c486333cfed823df *man/walk_threshold_steps.Rd
 be9f777cc0c27c3e38da655f9d5b8a3b *tests/testthat.R
-6bb765cafbbea0f71ff57498689f92fd *tests/testthat/helper-skip.R
-2da2cc930a07b5c044dff5f8a0979fc6 *tests/testthat/test-aaa.R
+6f9265fcdf91113497a698c3e8614f12 *tests/testthat/helper-skip.R
+8562de3988fa3c87c19e63b984abd667 *tests/testthat/test-aaa.R
 cce80002cf27b7242cd6016dd7f37487 *tests/testthat/test-clusterpermute.R
 0673653e4f6c707ea9a7f9d952939d3e *tests/testthat/test-jlmer.R
 0d186c205ba8dd25d3f5e169fba286de *tests/testthat/test-jlmer_spec.R

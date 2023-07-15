@@ -13,15 +13,17 @@
 
 # Helpers
 julia_version_compatible <- function() {
-  julia_version <- gsub("julia version ", "", system2("julia", "--version", stdout = TRUE))
+  julia_version <- gsub("^.*(\\d+\\.\\d+\\.\\d+).*$", "\\1", system2("julia", "--version", stdout = TRUE))
   as.package_version(julia_version) >= 1.8
 }
 is_setup <- function() isTRUE(.jlmerclusterperm$is_setup)
 
-#' Check Julia setup for jlmerclusterperm
+#' Check Julia setup requirements for jlmerclusterperm
 #'
 #' @return Boolean
 #' @export
+#' @examples
+#' julia_setup_ok()
 julia_setup_ok <- function() {
   JuliaConnectoR::juliaSetupOk() && julia_version_compatible()
 }

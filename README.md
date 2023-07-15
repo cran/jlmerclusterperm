@@ -7,8 +7,6 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/jlmerclusterperm)](https://CRAN.R-project.org/package=jlmerclusterperm)
-[![Development
-Version](https://img.shields.io/badge/devel%20version-1.0.1-check.svg)](https://github.com/yjunechoe/jlmerclusterperm)
 [![R-CMD-check](https://github.com/yjunechoe/jlmerclusterperm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yjunechoe/jlmerclusterperm/actions/workflows/R-CMD-check.yaml)
 [![pkgcheck](https://github.com/yjunechoe/jlmerclusterperm/workflows/pkgcheck/badge.svg)](https://github.com/yjunechoe/jlmerclusterperm/actions?query=workflow%3Apkgcheck)
 [![Codecov test
@@ -275,7 +273,7 @@ following as you see fit.
 To cite jlmerclusterperm:
 
 - Choe, J. (2023). jlmerclusterperm: Cluster-Based Permutation Analysis
-  for Densely Sampled Time Data. R package version 1.0.1.
+  for Densely Sampled Time Data. R package version 1.0.2.
   <https://cran.r-project.org/package=jlmerclusterperm>.
 
 To cite the cluster-based permutation test:
