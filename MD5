@@ -1,14 +1,14 @@
-ccc09920c84a8e6ebc3b4733957d8afb *DESCRIPTION
+3f19af1376bb5bf2149917354dd48836 *DESCRIPTION
 d37c99895d661b1cbb1434dba60e554f *LICENSE
 a9aa89592104bf9fe4bd97ccf7ad8b5e *NAMESPACE
-fe763c110a374f0b184f19a0a612f1ff *NEWS.md
-28eaa3aaa059396e668c950a8ffe0c15 *R/aaa.R
+5f83e45951cdce4af3e09ac33515b8fc *NEWS.md
+527515aa5773ced1ac44a1b5db7ef48a *R/aaa.R
 456d1eeb5f37135bab75563ff21862ad *R/calculate_pvalue.R
 053698f51a7051a22d26d336e9830486 *R/clusterpermute.R
 d7d7d78d410138ec1626903f2237fd15 *R/clusters_methods.R
 943c6296d46d02107935bfe949d7f632 *R/compute_timewise_statistics.R
 d2f433114c58625e7a07ad9d5a53a5ab *R/extract_clusters.R
-9ee9ded7d3f71dd858888ccb00fd86b1 *R/interop-utils-unexported.R
+aa080257e38ecb0930b4482809acda5e *R/interop-utils-unexported.R
 3aa04981f8ba7982236337ca0d38080f *R/interop-utils.R
 cb4bfe6b2de42393f4d1bd682d5ae5e6 *R/jlmer.R
 5ce0a812aaa2ac392b554292e2da9059 *R/jlmer_spec.R
@@ -21,7 +21,7 @@ b2e1864ae13fc1f449b7a821c404b58f *R/threshold_search.R
 7ad321b9f94163df04889b4b27534af0 *R/tidy.R
 41792612dc2971527fa11a6cf7e9a47a *R/utils.R
 c87c2d9619a96ec469efd6c2e01e34ee *R/zzz.R
-aa4086656208da59d57ef66af5c73543 *README.md
+02688b2b7239d3222c2127d575197ba5 *README.md
 f01682ffd9d5582c0d3b8a226f3c2b16 *build/partial.rdb
 adb9de191af250848e0dc03c194aeb6f *build/vignette.rds
 e8c98e39c7a9fcb4b53cb90eb37e61cc *inst/doc/jlmerclusterperm.R
