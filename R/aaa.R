@@ -11,10 +11,13 @@
   span.fm = list()
 )
 
-# Helpers
+# Setup helpers
 julia_version_compatible <- function() {
   julia_version <- gsub("^.*(\\d+\\.\\d+\\.\\d+).*$", "\\1", system2("julia", "--version", stdout = TRUE))
   as.package_version(julia_version) >= "1.8"
+}
+julia_detect_cores <- function() {
+  as.integer(system2("julia", '-q -e "println(Sys.CPU_THREADS);"', stdout = TRUE))
 }
 is_setup <- function() isTRUE(.jlmerclusterperm$is_setup)
 
@@ -64,12 +67,14 @@ setup_with_progress <- function(..., verbose = TRUE) {
   start_with_threads(verbose = verbose)
   set_projenv(verbose = verbose)
   source_jl(verbose = verbose)
+  cleanup_jl()
+  invisible(TRUE)
 }
 
-start_with_threads <- function(..., max_threads = 7, verbose = TRUE) {
+start_with_threads <- function(..., max_threads = 7L, verbose = TRUE) {
   JULIA_NUM_THREADS <- Sys.getenv("JULIA_NUM_THREADS")
   nthreads <- getOption("jlmerclusterperm.nthreads", JULIA_NUM_THREADS) %|0|%
-    (min(max_threads, parallel::detectCores() - 1))
+    (min(max_threads, julia_detect_cores() - 1L))
   if (verbose) cli::cli_progress_step("Starting Julia with {nthreads} thread{?s}")
   if (nthreads > 1) {
     Sys.setenv("JULIA_NUM_THREADS" = nthreads)
@@ -79,53 +84,67 @@ start_with_threads <- function(..., max_threads = 7, verbose = TRUE) {
     suppressMessages(JuliaConnectoR::startJuliaServer())
   }
   .jlmerclusterperm$opts$nthreads <- nthreads
+  invisible(TRUE)
 }
 
 set_projenv <- function(..., verbose = TRUE) {
   if (verbose) cli::cli_progress_step("Activating package environment")
   pkgdir <- system.file("julia/", package = "jlmerclusterperm")
-  seed <- as.integer(getOption("jlmerclusterperm.seed", 1L))
-  JuliaConnectoR::juliaCall("cd", pkgdir)
+  cachedir <- tools::R_user_dir("jlmerclusterperm", which = "cache")
+  userdir <- if (exists(dirname(cachedir))) cachedir else tempdir()
+  projdir <- file.path(userdir, "julia")
+  manifest <- file.path(projdir, "Manifest.toml")
+  from_manifest <- file.exists(manifest)
+  if (!dir.exists(userdir)) {
+    dir.create(userdir)
+  } else if (!from_manifest) {
+    unlink(dir(userdir, full.names = TRUE), recursive = TRUE)
+  }
+  file.copy(from = pkgdir, to = userdir, recursive = TRUE)
+  JuliaConnectoR::juliaCall("cd", projdir)
   JuliaConnectoR::juliaEval("using Pkg")
   JuliaConnectoR::juliaEval('Pkg.activate(".", io = devnull)')
-  JuliaConnectoR::juliaEval("Pkg.instantiate()") # io = devnull
+  JuliaConnectoR::juliaEval('Pkg.develop(path = "JlmerClusterPerm", io = devnull)')
+  io <- if (from_manifest) "io = devnull" else ""
+  JuliaConnectoR::juliaEval(sprintf("Pkg.instantiate(%s)", io))
   JuliaConnectoR::juliaEval("Pkg.resolve(io = devnull)")
   JuliaConnectoR::juliaCall("cd", getwd())
-  JuliaConnectoR::juliaEval(paste0("pg_width = ", max(1L, cli::console_width() - 44L)))
-  JuliaConnectoR::juliaEval("pg_io = stderr")
-  JuliaConnectoR::juliaEval(paste0("using Random123; const rng = Threefry2x((", seed, ", 20))"))
+  .jlmerclusterperm$opts$projdir <- projdir
+  define_globals()
+  invisible(TRUE)
+}
+
+define_globals <- function(...) {
+  seed <- as.integer(getOption("jlmerclusterperm.seed", 1L))
+  JuliaConnectoR::juliaEval(sprintf(
+    "pg = Dict(:width => %i, :io => stderr);
+    using Random123;
+    const rng = Threefry2x((%i, 20));",
+    max(1L, cli::console_width() - 44L),
+    as.integer(seed)
+  ))
   .jlmerclusterperm$opts$seed <- seed
-  .jlmerclusterperm$opts$pkgdir <- pkgdir
+  .jlmerclusterperm$get_jl_opts <- function(x) {
+    list(JuliaConnectoR::juliaEval("(pg = pg, rng = rng)"))
+  }
+  invisible(TRUE)
 }
 
 source_jl <- function(..., verbose = TRUE) {
-  jl_pkgs <- readLines(file.path(.jlmerclusterperm$opts$pkgdir, "load-pkgs.jl"))
-  jl_scripts <- list.files(.jlmerclusterperm$opts$pkgdir, pattern = "\\d{2}-.*\\.jl$", full.names = TRUE)
-  load_steps <- c(jl_pkgs, jl_scripts)
+  jl_pkgs <- readLines(file.path(.jlmerclusterperm$opts$projdir, "load-pkgs.jl"))
   i <- 1L
-  if (verbose) cli::cli_progress_step("Running package setup scripts ({i}/{length(load_steps)})")
-  for (i in seq_along(load_steps)) {
+  if (verbose) cli::cli_progress_step("Running package setup scripts ({i}/{length(jl_pkgs) + 1})")
+  for (i in (seq_along(jl_pkgs) + 1)) {
     if (verbose) cli::cli_progress_update()
-    jl_load <- load_steps[i]
-    if (grepl("^using ", jl_load)) {
-      JuliaConnectoR::juliaEval(jl_load)
+    if (i <= length(jl_pkgs)) {
+      JuliaConnectoR::juliaEval(jl_pkgs[i])
     } else {
-      JuliaConnectoR::juliaCall("include", jl_load)
+      .jlmerclusterperm$jl <- JuliaConnectoR::juliaImport("JlmerClusterPerm")
     }
   }
-  exported_fns <- c(
-    "jlmer", "compute_timewise_statistics",
-    "extract_clusters", "permute_timewise_statistics",
-    "guess_shuffle_as", "permute_by_predictor"
-  )
-  for (jl_fn in exported_fns) {
-    .jlmerclusterperm[[jl_fn]] <- JuliaConnectoR::juliaFun(jl_fn)
-  }
-  .jlmerclusterperm$exported_fns <- exported_fns
+  invisible(TRUE)
 }
 
-#' @keywords internal
-dev_source <- function() { # nocov start
-  .jlmerclusterperm$opts$pkgdir <- system.file("julia/", package = "jlmerclusterperm")
-  source_jl()
-} # nocov end
+cleanup_jl <- function(...) {
+  unlink(dir(.jlmerclusterperm$opts$projdir, pattern = "[^Manifest.toml]", full.names = TRUE), recursive = TRUE)
+}
