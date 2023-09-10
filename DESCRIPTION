@@ -1,6 +1,6 @@
 Package: jlmerclusterperm
 Title: Cluster-Based Permutation Analysis for Densely Sampled Time Data
-Version: 1.0.4
+Version: 1.0.5
 Authors@R: 
     person("June", "Choe", , "jchoe001@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-0701-921X"))
@@ -19,7 +19,8 @@ URL: https://github.com/yjunechoe/jlmerclusterperm,
         https://yjunechoe.github.io/jlmerclusterperm/
 BugReports: https://github.com/yjunechoe/jlmerclusterperm/issues
 Depends: R (>= 3.5)
-Imports: cli, generics, JuliaConnectoR, lme4, stats, tools, utils
+Imports: backports (>= 1.1.7), cli, generics, JuliaConnectoR, lme4,
+        stats, tools, utils
 Suggests: broom, broom.mixed, covr, dplyr, eyetrackingR, forcats,
         future, ggplot2, knitr, MASS, patchwork, readr, rmarkdown,
         scales, testthat (>= 3.0.0), tibble
@@ -36,8 +37,8 @@ Collate: 'jlmerclusterperm-package.R' 'aaa.R' 'utils.R'
         'clusterpermute.R' 'threshold_search.R' 'tidy.R' 'zzz.R'
         'srr-stats-standards.R'
 NeedsCompilation: no
-Packaged: 2023-09-05 16:31:30 UTC; jchoe
+Packaged: 2023-09-09 17:17:10 UTC; jchoe
 Author: June Choe [aut, cre, cph] (<https://orcid.org/0000-0002-0701-921X>)
 Maintainer: June Choe <jchoe001@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-09-06 09:10:25 UTC
+Date/Publication: 2023-09-10 09:10:02 UTC
