@@ -1,6 +1,6 @@
 Package: jlmerclusterperm
 Title: Cluster-Based Permutation Analysis for Densely Sampled Time Data
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: 
     person("June", "Choe", , "jchoe001@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-0701-921X"))
@@ -37,8 +37,8 @@ Collate: 'jlmerclusterperm-package.R' 'aaa.R' 'utils.R'
         'clusterpermute.R' 'threshold_search.R' 'tidy.R' 'zzz.R'
         'srr-stats-standards.R'
 NeedsCompilation: no
-Packaged: 2024-02-07 17:44:28 UTC; jchoe
+Packaged: 2024-02-16 16:21:45 UTC; jchoe
 Author: June Choe [aut, cre, cph] (<https://orcid.org/0000-0002-0701-921X>)
 Maintainer: June Choe <jchoe001@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-02-08 06:40:03 UTC
+Date/Publication: 2024-02-17 12:20:08 UTC
