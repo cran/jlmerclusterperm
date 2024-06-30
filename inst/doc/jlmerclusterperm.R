@@ -4,3 +4,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+## ----echo = FALSE, out.width="100%"-------------------------------------------
+knitr::include_graphics("https://raw.githubusercontent.com/yjunechoe/jlmerclusterperm/main/man/figures/jlmerclusterperm_fn_design.png")
+

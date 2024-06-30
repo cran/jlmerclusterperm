@@ -7,6 +7,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/jlmerclusterperm)](https://CRAN.R-project.org/package=jlmerclusterperm)
+[![jlmerclusterperm status
+badge](https://yjunechoe.r-universe.dev/badges/jlmerclusterperm)](https://yjunechoe.r-universe.dev/jlmerclusterperm)
 [![R-CMD-check](https://github.com/yjunechoe/jlmerclusterperm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yjunechoe/jlmerclusterperm/actions/workflows/R-CMD-check.yaml)
 [![pkgcheck](https://github.com/yjunechoe/jlmerclusterperm/workflows/pkgcheck/badge.svg)](https://github.com/yjunechoe/jlmerclusterperm/actions?query=workflow%3Apkgcheck)
 [![Codecov test
@@ -21,7 +23,7 @@ implementation of the cluster-based permutation test for time series
 data, powered by
 [JuliaConnectoR](https://github.com/stefan-m-lenz/JuliaConnectoR).
 
-![](man/figures/clusterpermute_slice.png)
+<img src="man/figures/clusterpermute_animation.gif" style="display: block; margin: auto;" />
 
 ## Installation and usage
 
@@ -230,9 +232,10 @@ following as you see fit.
 
 To cite jlmerclusterperm:
 
-- Choe, J. (2023). jlmerclusterperm: Cluster-Based Permutation Analysis
-  for Densely Sampled Time Data. R package version 1.1.2.
-  <https://cran.r-project.org/package=jlmerclusterperm>.
+- Choe, J. (2024). jlmerclusterperm: Cluster-Based
+  Permutation Analysis for Densely Sampled Time Data. R package version
+  1.1.4.
+  [10.32614/CRAN.package.jlmerclusterperm](https://doi.org/10.32614/CRAN.package.jlmerclusterperm).
 
 To cite the cluster-based permutation test:
 
